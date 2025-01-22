@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ejercicio.MSCliente.configuration.FeignClientConfig;
 import com.ejercicio.MSCliente.model.CuentaDTO;
 import com.ejercicio.MSCliente.model.MovimientoDTO;
+import com.ejercicio.MSCliente.utils.CampoEntidad;
 
 @FeignClient(name = "Cuentas", url = "${cuentas_url}", configuration = FeignClientConfig.class)
 public interface CuentaClient {
 
 	@GetMapping("/cuentas/cliente/{clienteId}")
-	List<CuentaDTO> getCuentasByClienteId(@PathVariable("clienteId") long clienteId);
+	List<CuentaDTO> getCuentasByClienteId(@PathVariable(CampoEntidad.CLIENTE_ID) long clienteId);
 
 	@DeleteMapping("/cuentas/cliente/{clientId}")
 	void deleteByClientId(@PathVariable("clientId") long clientId);

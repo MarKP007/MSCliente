@@ -2,29 +2,35 @@ package com.ejercicio.MSCliente.model;
 
 import java.util.List;
 
+import com.ejercicio.MSCliente.utils.CampoEntidad;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "clientid")
-@Table(name = "cliente")
+@PrimaryKeyJoinColumn(name = CampoEntidad.PRIMARY_KEY_JOIN_COLUMN)
+@Table(name = CampoEntidad.TABLE_NAME_CLIENTE)
+@Data
+@EqualsAndHashCode(callSuper = false)
+@AllArgsConstructor
+@NoArgsConstructor
 public class Cliente extends Persona {
 
-	@Column(name = "contrasena")
+	@Column(name = CampoEntidad.CONTRASENA)
 	private String contrasena;
 
-	@Column(name = "estado")
+	@Column(name = CampoEntidad.ESTADO)
 	private String estado;
 
 	@Transient
 	private List<CuentaDTO> cuentas;
-
-	public Cliente() {
-
-	}
 
 	public Cliente(String nombre, String genero, int edad, String identificacion, String direccion, String telefono,
 			String contrasena, String estado) {
@@ -37,34 +43,4 @@ public class Cliente extends Persona {
 		this.contrasena = contrasena;
 		this.estado = estado;
 	}
-
-	public String getContrasena() {
-		return contrasena;
-	}
-
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public List<CuentaDTO> getCuentas() {
-		return cuentas;
-	}
-
-	public void setCuentas(List<CuentaDTO> cuentas) {
-		this.cuentas = cuentas;
-	}
-
-	@Override
-	public String toString() {
-		return "Tutorial [personaId=" + getId() + ", contrasena=" + contrasena + ", estado=" + estado + "]";
-	}
-
 }

@@ -19,6 +19,7 @@ import com.ejercicio.MSCliente.model.Cliente;
 import com.ejercicio.MSCliente.model.ClienteDTO;
 import com.ejercicio.MSCliente.repository.CuentaClient;
 import com.ejercicio.MSCliente.service.ClienteService;
+import com.ejercicio.MSCliente.utils.CampoEntidad;
 import com.ejercicio.MSCliente.utils.EjercicioUtil;
 
 @RestController
@@ -46,9 +47,8 @@ public class ClienteController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<ClienteDTO> obtenerClientePorId(@PathVariable("id") long id) {
+	public ResponseEntity<ClienteDTO> obtenerClientePorId(@PathVariable(CampoEntidad.ID) long id) {
 		Cliente clienteData = clienteService.findById(id);
-
 		if (clienteData != null) {
 			return new ResponseEntity<>(mapStructService.mapCLienteToClienteDTO(clienteData), HttpStatus.OK);
 		} else {
@@ -66,7 +66,8 @@ public class ClienteController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<ClienteDTO> updateCliente(@PathVariable("id") long id, @RequestBody ClienteDTO clienteDTO) {
+	public ResponseEntity<ClienteDTO> updateCliente(@PathVariable(CampoEntidad.ID) long id,
+			@RequestBody ClienteDTO clienteDTO) {
 		Cliente cliente = clienteService.update(id, clienteDTO);
 		if (cliente != null) {
 			return new ResponseEntity<>(mapStructService.mapCLienteToClienteDTO(cliente), HttpStatus.OK);
@@ -75,7 +76,7 @@ public class ClienteController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<HttpStatus> eliminarCliente(@PathVariable("id") long id) {
+	public ResponseEntity<HttpStatus> eliminarCliente(@PathVariable(CampoEntidad.ID) long id) {
 		try {
 			cuentaClient.deleteByClientId(id);
 			clienteService.deleteById(id);
