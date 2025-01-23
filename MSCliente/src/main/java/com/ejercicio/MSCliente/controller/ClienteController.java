@@ -22,19 +22,31 @@ import com.ejercicio.MSCliente.service.ClienteService;
 import com.ejercicio.MSCliente.utils.CampoEntidad;
 import com.ejercicio.MSCliente.utils.EjercicioUtil;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ClienteController.
+ */
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
 
+	/** The cliente service. */
 	@Autowired
 	ClienteService clienteService;
 
+	/** The map struct service. */
 	@Autowired
 	MapStructService mapStructService;
 
+	/** The cuenta client. */
 	@Autowired
 	private CuentaClient cuentaClient;
 
+	/**
+	 * Obtener todos clientes.
+	 *
+	 * @return the response entity
+	 */
 	@GetMapping
 	public ResponseEntity<List<ClienteDTO>> obtenerTodosClientes() {
 		List<Cliente> clientes = clienteService.findAll();
@@ -46,6 +58,12 @@ public class ClienteController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
+	/**
+	 * Obtener cliente por id.
+	 *
+	 * @param id the id
+	 * @return the response entity
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<ClienteDTO> obtenerClientePorId(@PathVariable(CampoEntidad.ID) long id) {
 		Cliente clienteData = clienteService.findById(id);
@@ -56,6 +74,12 @@ public class ClienteController {
 		}
 	}
 
+	/**
+	 * Crear cliente.
+	 *
+	 * @param cliente the cliente
+	 * @return the response entity
+	 */
 	@PostMapping
 	public ResponseEntity<ClienteDTO> crearCliente(@RequestBody ClienteDTO cliente) {
 		Cliente _cliente = clienteService.save(cliente);
@@ -65,6 +89,13 @@ public class ClienteController {
 		return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
+	/**
+	 * Update cliente.
+	 *
+	 * @param id         the id
+	 * @param clienteDTO the cliente DTO
+	 * @return the response entity
+	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<ClienteDTO> updateCliente(@PathVariable(CampoEntidad.ID) long id,
 			@RequestBody ClienteDTO clienteDTO) {
@@ -75,6 +106,12 @@ public class ClienteController {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
+	/**
+	 * Eliminar cliente.
+	 *
+	 * @param id the id
+	 * @return the response entity
+	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<HttpStatus> eliminarCliente(@PathVariable(CampoEntidad.ID) long id) {
 		try {

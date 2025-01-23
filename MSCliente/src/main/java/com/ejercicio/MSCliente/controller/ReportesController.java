@@ -18,16 +18,30 @@ import com.ejercicio.MSCliente.model.MovimientoDTO;
 import com.ejercicio.MSCliente.repository.CuentaClient;
 import com.ejercicio.MSCliente.service.ClienteService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ReportesController.
+ */
 @RestController
 @RequestMapping()
 public class ReportesController {
 
+	/** The cliente service. */
 	@Autowired
 	ClienteService clienteService;
 
+	/** The cuenta client. */
 	@Autowired
 	private CuentaClient cuentaClient;
 
+	/**
+	 * Reporte movimientos.
+	 *
+	 * @param id        the id
+	 * @param startDate the start date
+	 * @param endDate   the end date
+	 * @return the response entity
+	 */
 	@GetMapping("/reportes")
 	public ResponseEntity<Cliente> reporteMovimientos(@RequestParam long id,
 			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,

@@ -14,6 +14,10 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Cliente.
+ */
 @Entity
 @PrimaryKeyJoinColumn(name = CampoEntidad.PRIMARY_KEY_JOIN_COLUMN)
 @Table(name = CampoEntidad.TABLE_NAME_CLIENTE)
@@ -23,15 +27,30 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Cliente extends Persona {
 
+	/** The contrasena. */
 	@Column(name = CampoEntidad.CONTRASENA)
 	private String contrasena;
 
+	/** The estado. */
 	@Column(name = CampoEntidad.ESTADO)
 	private String estado;
 
+	/** The cuentas. */
 	@Transient
 	private List<CuentaDTO> cuentas;
 
+	/**
+	 * Instantiates a new cliente.
+	 *
+	 * @param nombre         the nombre
+	 * @param genero         the genero
+	 * @param edad           the edad
+	 * @param identificacion the identificacion
+	 * @param direccion      the direccion
+	 * @param telefono       the telefono
+	 * @param contrasena     the contrasena
+	 * @param estado         the estado
+	 */
 	public Cliente(String nombre, String genero, int edad, String identificacion, String direccion, String telefono,
 			String contrasena, String estado) {
 		setNombre(nombre);

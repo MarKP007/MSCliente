@@ -14,15 +14,26 @@ import com.ejercicio.MSCliente.repository.ClienteRepository;
 import com.ejercicio.MSCliente.repository.CuentaClient;
 import com.ejercicio.MSCliente.utils.EjercicioUtil;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ClienteService.
+ */
 @Service
 public class ClienteService {
 
+	/** The cliente repository. */
 	@Autowired
 	private ClienteRepository clienteRepository;
 
+	/** The cuenta client. */
 	@Autowired
 	private CuentaClient cuentaClient;
 
+	/**
+	 * Find all.
+	 *
+	 * @return the list
+	 */
 	public List<Cliente> findAll() {
 		try {
 			List<Cliente> clientes = new ArrayList<Cliente>();
@@ -37,6 +48,12 @@ public class ClienteService {
 		}
 	}
 
+	/**
+	 * Find by id.
+	 *
+	 * @param id the id
+	 * @return the cliente
+	 */
 	public Cliente findById(long id) {
 		Optional<Cliente> clienteData = clienteRepository.findById(id);
 
@@ -49,6 +66,12 @@ public class ClienteService {
 		return null;
 	}
 
+	/**
+	 * Save.
+	 *
+	 * @param clienteDTO the cliente DTO
+	 * @return the cliente
+	 */
 	public Cliente save(ClienteDTO clienteDTO) {
 		try {
 			Cliente _cliente = clienteRepository.save(new Cliente(clienteDTO.getNombre(), clienteDTO.getGenero(),
@@ -60,6 +83,13 @@ public class ClienteService {
 		}
 	}
 
+	/**
+	 * Update.
+	 *
+	 * @param id         the id
+	 * @param clienteDTO the cliente DTO
+	 * @return the cliente
+	 */
 	public Cliente update(long id, ClienteDTO clienteDTO) {
 		Optional<Cliente> clienteData = clienteRepository.findById(id);
 
@@ -88,6 +118,11 @@ public class ClienteService {
 		}
 	}
 
+	/**
+	 * Delete by id.
+	 *
+	 * @param id the id
+	 */
 	public void deleteById(long id) {
 		clienteRepository.deleteById(id);
 	}
