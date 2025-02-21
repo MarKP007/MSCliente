@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,6 +33,7 @@ public class Persona {
 	private long id;
 
 	/** The nombre. */
+	@NotBlank(message = "El nombre no puede ser vacio.")
 	@Column(name = CampoEntidad.NOMBRE)
 	private String nombre;
 
@@ -44,6 +46,7 @@ public class Persona {
 	private int edad;
 
 	/** The identificacion. */
+	@NotBlank(message = "El campo identificación es obligaorio.")
 	@Column(name = CampoEntidad.IDENTIFICACION)
 	private String identificacion;
 

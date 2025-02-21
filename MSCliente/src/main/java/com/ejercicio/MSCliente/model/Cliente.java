@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -28,6 +29,7 @@ import lombok.NoArgsConstructor;
 public class Cliente extends Persona {
 
 	/** The contrasena. */
+	@NotBlank(message = "El campo contraseña es obligaorio.")
 	@Column(name = CampoEntidad.CONTRASENA)
 	private String contrasena;
 

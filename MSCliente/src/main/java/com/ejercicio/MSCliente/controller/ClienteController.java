@@ -22,6 +22,8 @@ import com.ejercicio.MSCliente.service.ClienteService;
 import com.ejercicio.MSCliente.utils.CampoEntidad;
 import com.ejercicio.MSCliente.utils.EjercicioUtil;
 
+import jakarta.validation.Valid;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class ClienteController.
@@ -81,7 +83,7 @@ public class ClienteController {
 	 * @return the response entity
 	 */
 	@PostMapping
-	public ResponseEntity<ClienteDTO> crearCliente(@RequestBody ClienteDTO cliente) {
+	public ResponseEntity<ClienteDTO> crearCliente(@Valid @RequestBody ClienteDTO cliente) {
 		Cliente _cliente = clienteService.save(cliente);
 		if (cliente != null) {
 			return new ResponseEntity<>(mapStructService.mapCLienteToClienteDTO(_cliente), HttpStatus.CREATED);
